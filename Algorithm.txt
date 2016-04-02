@@ -1,0 +1,99 @@
+****************
+* BinarySearch *
+****************
+
+int binarySearch(int a[], int start, int end, int key) {
+    int mid = (start + end) / 2;
+
+    if (start <= end ) {
+        if (a[mid] == key) {
+            return mid;
+        } else if (a[mid] > key) {
+            return binarySearch(a, start, mid - 1, key);
+        } else if (a[mid] < key) {
+            return binarySearch(a, mid + 1, end, key);
+        }
+    }
+
+    return -1;
+}
+
+*************
+* QuickSort *
+*************
+//- quick sort: lomuto partion algorithm
+void quickSort(int a[], int l, int r) {
+    if (l < r) {
+        int i = l - 1;
+        for (int j = l; j < r; j++) {
+            if (a[j] <= a[r]) {
+                i++; 
+                swap(a[i], a[j]);
+            }
+        }
+        swap(a[i + 1], a[r]);
+
+        quickSort(a, l, i);
+        quickSort(a, i + 2, r);
+    }
+}
+
+
+**********************************************
+* 최소신장트리(Mininum Spanning Tree) - Prim *
+**********************************************
+
+***********
+* hashing *
+***********
+
+**********************************************************
+* 접미어 배열(Suffix Arrary), LCP(Longest Common Prefix) *
+**********************************************************
+
+
+*******************************************************
+* 최종공통 부분 수열(LCS - Longest Commo Subsequence) *
+*******************************************************
+int LCS[MAX_SIZE][MAX_SIZE];
+int cal(char x[], char y[], int len_x, int len_y){
+    for(int i = 1; i <= len_y; i++){
+        for(int j = 1; j <= len_y; j++){
+            if(x[i-1] == y[j-1])
+                LCS[i][j] = LCS[i-1][j-1]+1;
+            else
+                LCS[i][j] = MAX(LCS[i-1][j], LCS[i][j-1]);
+        }
+    }
+    return LCS[len_y][len_x];
+}
+
+
+**************************************
+* 모든 쌍 최단 경로 - Floyd Warshall *
+**************************************
+void AllPairsShortest(int D[][], int N ) {
+	for(int k = 1; k <= N; k++) {
+		for(int i = 1; i <=N; i++) {
+			if (k == i) continue;
+			
+			for(int j = 1; j <= N; j++) {
+				if(j == k || j== i) continue;
+				
+				D[i][j] = MIN(D[i][k] + D[k][j], D[i][j]);
+			}
+		}
+	}
+}
+
+
+*********
+* TSP   *
+*********
+
+*******************************
+* 위상정렬 (Topological Sort) *
+*******************************
+1. 자기 자신을 가리키는 변이 없는 꼭짓점을 찾음.
+2. 찾은 꼭짓점을 출력하고 출력한 꼭짓점과 그 꼭짓점에서 출발하는 변을 삭제
+3. 아직 그래프에 꼭짓점이 남아있으면 단계 1로 돌아가고, 아니면 알고리즘을 종료시킨다.
