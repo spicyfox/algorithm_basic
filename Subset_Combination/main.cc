@@ -6,7 +6,7 @@ using namespace std;
 
 #define ULLONG unsigned long long
 
-const int N = 30;
+const int N = 25;
 int DATA[] = {-1, 3, -9, 6, 7,-6, 1,5,4, -2, -1, 3, -9, 6, 7,-6, 1,5,4, -2, -1, 3, -9, 6, 7,-6, 1,5,4, -2};
 int PATH[N] = {0,};
 ULLONG COUNT = 0;
@@ -54,7 +54,7 @@ int main() {
 
 	COUNT = 0;
 	start = clock();
-	//solve();
+	solve();
 	printf("%lld [%.3fs]\n", COUNT, (float)((clock() - start)/ (float) CLOCKS_PER_SEC));
 	return 0;
 }

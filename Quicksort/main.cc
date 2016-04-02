@@ -5,7 +5,7 @@
 using namespace std;
 
 //const int N = 0x2FFFFF;
-const int N = 0x2FFFFF;
+const int N = 100;
 
 int DATA[N];
 
@@ -48,12 +48,14 @@ void quickSort_(int a[], int l, int r) {
     }
 }
 
+//- quick sort: lomuto partion algorithm
 void quickSort(int a[], int l, int r) {
     if (l < r) {
         int i = l - 1;
-        for (int j = l; j <= r - 1; j++) {
+        for (int j = l; j < r; j++) {
             if (a[j] <= a[r]) {
-                i++, swap(a[i], a[j]);
+                i++; 
+                swap(a[i], a[j]);
             }
         }
         swap(a[i + 1], a[r]);
@@ -62,8 +64,9 @@ void quickSort(int a[], int l, int r) {
         quickSort(a, i + 2, r);
     }
 }
+
 void countingSort(int a[], int l, int r) {
-    //int temp[r + 1] = {0,};
+    //int temp[r + 1];
     int *temp = new int[r + 1];
     for(int i = 0; i <= r; i++) {
         temp[i] = 0;
